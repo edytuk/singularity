@@ -13,6 +13,11 @@
   network namespaces as these may not be supported on many installations.
 - `--no-https` now applies to connections made to library services specified
   in `--library://<hostname>/...` URIs.
+- A new `--mount` flag and `SINGULARITY_MOUNT` environment variable can be used
+  to specify bind mounts in
+  `type=bind,source=<src>,destination=<dst>[,options...]` format. This improves
+  CLI compatibility with other runtimes, and allows binding paths containing
+  `:` and `,` characters (using CSV style escaping).
 
 ### Changed defaults / behaviours
 
