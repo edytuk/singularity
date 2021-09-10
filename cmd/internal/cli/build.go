@@ -31,6 +31,7 @@ import (
 var buildArgs struct {
 	sections      []string
 	bindPaths     []string
+	mounts        []string
 	arch          string
 	builderURL    string
 	libraryURL    string
@@ -240,6 +241,19 @@ var buildBindFlag = cmdline.Flag{
 		"Multiple bind paths can be given by a comma separated list. (not supported with remote build)",
 }
 
+// --mount
+var buildMountFlag = cmdline.Flag{
+	ID:           "buildMountFlag",
+	Value:        &buildArgs.mounts,
+	DefaultValue: []string{},
+	Name:         "mount",
+	Usage:        "a mount specification e.g. 'type=bind,source=/opt,destination=/hostopt'.",
+	EnvKeys:      []string{"MOUNT"},
+	Tag:          "<spec>",
+	EnvHandler:   cmdline.EnvAppendValue,
+	StringArray:  true,
+}
+
 // --writable-tmpfs
 var buildWritableTmpfsFlag = cmdline.Flag{
 	ID:           "buildWritableTmpfsFlag",
@@ -283,6 +297,7 @@ func init() {
 		cmdManager.RegisterFlagForCmd(&buildNvFlag, buildCmd)
 		cmdManager.RegisterFlagForCmd(&buildRocmFlag, buildCmd)
 		cmdManager.RegisterFlagForCmd(&buildBindFlag, buildCmd)
+		cmdManager.RegisterFlagForCmd(&buildMountFlag, buildCmd)
 		cmdManager.RegisterFlagForCmd(&buildWritableTmpfsFlag, buildCmd)
 	})
 }
