@@ -25,6 +25,9 @@
   and it requires being used in combination with `--writable` in user
   namespace mode.
   Please see documentation for more details.
+- Perform concurrent multi-part downloads for `library://` URIs. Uses 3
+  concurrent downloads by default, and is configurable in `singularity.conf` or
+  via environment variables.
 
 ### Changed defaults / behaviours
 
