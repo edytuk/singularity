@@ -411,7 +411,7 @@ func execStarter(cobraCmd *cobra.Command, image string, args []string, name stri
 		img.File.Close()
 	}
 
-	binds, err := singularityConfig.ParseBindPath(BindPaths)
+	binds, err := singularityConfig.ParseBindPath(strings.Join(BindPaths, ","))
 	if err != nil {
 		sylog.Fatalf("while parsing bind path: %s", err)
 	}
