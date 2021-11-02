@@ -13,8 +13,6 @@ import (
 	"github.com/spf13/pflag"
 )
 
-type StringArray []string
-
 // Flag holds information about a command flag
 type Flag struct {
 	ID           string
